@@ -4,6 +4,7 @@
 include_once('database/connection.php');
 
 // Fetch Data
+$all = mysqli_query($conn, "SELECT * FROM reference");
 $osint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Osint'");
 $geoint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Geoint'");
 $socmint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Socmint'");
@@ -44,7 +45,9 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
         </header>
 
         <nav>
-            <button class="toggler-sidebar">☰</button>
+            <?php if ($all->num_rows > 0) : ?>
+                <button class="toggler-sidebar">☰</button>
+            <?php endif ?>
             <div class="nav-wrapper">
                 <a href="index.php">Beranda</a>
                 <a href="/pages/public/about.php">Tentang</a>
@@ -61,63 +64,65 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
         <div class="wrapper">
 
             <!-- Sidebar : Start -->
-            <sidebar id="sidebar">
+            <?php if ($all->num_rows > 0) : ?>
+                <sidebar id="sidebar">
 
-                <!-- Osint : Start -->
-                <div id="sidebar-osint">
-                    <button id="btn-osint">Alat Osint</button>
-                    <div id="osint-list">
-                        <?php while ($row = mysqli_fetch_assoc($osint)) : ?>
-                            <div class="tools-list">
-                                <div value='<?php echo $row['link'] ?>' style="cursor: pointer;"
-                                    class="tools"><?php echo $row['name'] ?></div>
-                            </div>
-                        <?php endwhile ?>
+                    <!-- Osint : Start -->
+                    <div id="sidebar-osint">
+                        <button id="btn-osint">Alat Osint</button>
+                        <div id="osint-list">
+                            <?php while ($row = mysqli_fetch_assoc($osint)) : ?>
+                                <div class="tools-list">
+                                    <div value='<?php echo $row['link'] ?>' style="cursor: pointer;"
+                                        class="tools"><?php echo $row['name'] ?></div>
+                                </div>
+                            <?php endwhile ?>
+                        </div>
                     </div>
-                </div>
-                <!-- Osint : End -->
+                    <!-- Osint : End -->
 
-                <!-- Geoint : Start -->
-                <div id="sidebar-geoint">
-                    <button id="btn-geoint">Alat Geoint</button>
-                    <div id="geoint-list">
-                        <?php while ($row = mysqli_fetch_assoc($geoint)) : ?>
-                            <div class="tools-list">
-                                <div value='<?php echo $row['link'] ?>' style="cursor: pointer;" class="tools"><?php echo $row['name'] ?></div>
-                            </div>
-                        <?php endwhile ?>
+                    <!-- Geoint : Start -->
+                    <div id="sidebar-geoint">
+                        <button id="btn-geoint">Alat Geoint</button>
+                        <div id="geoint-list">
+                            <?php while ($row = mysqli_fetch_assoc($geoint)) : ?>
+                                <div class="tools-list">
+                                    <div value='<?php echo $row['link'] ?>' style="cursor: pointer;" class="tools"><?php echo $row['name'] ?></div>
+                                </div>
+                            <?php endwhile ?>
+                        </div>
                     </div>
-                </div>
-                <!-- Geoint : End -->
+                    <!-- Geoint : End -->
 
-                <!-- Socmint : Start -->
-                <div id="sidebar-socmint">
-                    <button id="btn-socmint">Alat Socmint</button>
-                    <div id="socmint-list">
-                        <?php while ($row = mysqli_fetch_assoc($socmint)) : ?>
-                            <div class="tools-list">
-                                <div value='<?php echo $row['link'] ?>' style="cursor: pointer;" class="tools"><?php echo $row['name'] ?></div>
-                            </div>
-                        <?php endwhile ?>
+                    <!-- Socmint : Start -->
+                    <div id="sidebar-socmint">
+                        <button id="btn-socmint">Alat Socmint</button>
+                        <div id="socmint-list">
+                            <?php while ($row = mysqli_fetch_assoc($socmint)) : ?>
+                                <div class="tools-list">
+                                    <div value='<?php echo $row['link'] ?>' style="cursor: pointer;" class="tools"><?php echo $row['name'] ?></div>
+                                </div>
+                            <?php endwhile ?>
+                        </div>
                     </div>
-                </div>
-                <!-- Socmint : End -->
+                    <!-- Socmint : End -->
 
-                <!-- Humint : Start -->
-                <div id="sidebar-humint">
-                    <button id="btn-humint">Alat Humint</button>
-                    <div id="humint-list">
-                        <?php while ($row = mysqli_fetch_assoc($humint)) : ?>
-                            <div class="tools-list">
-                                <div value='<?php echo $row['link'] ?>' style="cursor: pointer;" class="tools"><?php echo $row['name'] ?></div>
-                            </div>
-                        <?php endwhile ?>
+                    <!-- Humint : Start -->
+                    <div id="sidebar-humint">
+                        <button id="btn-humint">Alat Humint</button>
+                        <div id="humint-list">
+                            <?php while ($row = mysqli_fetch_assoc($humint)) : ?>
+                                <div class="tools-list">
+                                    <div value='<?php echo $row['link'] ?>' style="cursor: pointer;" class="tools"><?php echo $row['name'] ?></div>
+                                </div>
+                            <?php endwhile ?>
+                        </div>
                     </div>
-                </div>
-                <!-- Humint : End -->
+                    <!-- Humint : End -->
 
 
-            </sidebar>
+                </sidebar>
+            <?php endif ?>
             <!-- Sidebar : End -->
 
             <!-- Content : Start -->
