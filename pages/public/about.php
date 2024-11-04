@@ -23,6 +23,8 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
 
     <title>Tentang - FINDxDFC</title>
     <link rel="stylesheet" href="../../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -72,6 +74,16 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
 
     </div>
     <!-- Container : End -->
+
+    <footer>
+      <p style="margin-bottom: 20px; font-size: 18px; font-weight: bold;">&copy; 2024 FINDxDFC. All rights reserved.</p>
+      <p>
+        <a href="privacy.html">Kebijakan Privasi</a> |
+        <a href="terms.html">Syarat & Ketentuan</a> |
+        <a href="contact.html">Kontak</a> |
+        <a href="faq.html">FAQ</a>
+      </p>
+    </footer>
 
     <!-- Loading Screen : Start -->
     <div id="loading-screen">

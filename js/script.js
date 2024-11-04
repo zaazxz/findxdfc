@@ -39,6 +39,7 @@ togglerSidebar.addEventListener('click', function () {
         // Show Blurred
         blurred.style.backgroundColor = "rgba(0,0,0,0.5)";
         blurred.style.backdropFilter = "blur(2px)";
+        blurred.style.display = "block";
         blurred.style.transition = "1s";
 
     } else {
@@ -54,6 +55,7 @@ togglerSidebar.addEventListener('click', function () {
         // hide Blurred
         blurred.style.backgroundColor = "rgba(0,0,0,0)";
         blurred.style.backdropFilter = "blur(0px)";
+        blurred.style.display = "none";
         blurred.style.transition = "1s";
 
     }
@@ -88,8 +90,8 @@ for (let i = 0; i < tools.length; i++) {
         // hide Blurred
         blurred.style.backgroundColor = "rgba(0,0,0,0)";
         blurred.style.backdropFilter = "blur(0px)";
+        blurred.style.display = "none";
         blurred.style.transition = "1s";
-
 
 
     })

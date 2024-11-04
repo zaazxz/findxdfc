@@ -23,6 +23,8 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
 
     <title>Beranda - FINDxDFC</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -46,7 +48,7 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
             <div class="nav-wrapper">
                 <a href="index.php">Beranda</a>
                 <a href="/pages/public/about.php">Tentang</a>
-                <a href="about.php">Administrator?</a>
+                <a href="/pages/admin/index.php">Administrator?</a>
             </div>
         </nav>
         <!-- Header : End -->
@@ -131,7 +133,7 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
                 <!-- Welcome Section : Start -->
                 <div id="iframe-section">
                     <h1 style="margin-bottom: 20px; text-align: center;" id="iframe-title">Osint Tools</h1>
-                    <iframe src="https://en.wikipedia.org/wiki/Open-source_intelligence" frameborder="0" id="iframe-id" scrolling="auto"></iframe>
+                    <iframe src="https://en.wikipedia.org/wiki/Open-source_intelligence" frameborder="0" id="iframe-id" scrolling="yes"></iframe>
                 </div>
                 <!-- Welcome Section : End -->
 
