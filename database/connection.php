@@ -2,16 +2,16 @@
 
 /*  MYSQLI Connection */
 // Ubuntu Linux Connection
+// $host = 'localhost';
+// $dbName = 'testing';
+// $dbUsername = 'root';
+// $dbPassword = 'mudahaja123';
+
+// XAMPP Connection
 $host = 'localhost';
 $dbName = 'testing';
 $dbUsername = 'root';
-$dbPassword = 'mudahaja123';
-
-// XAMPP Connection
-// $host = 'localhost';
-// $dbName = 'findxdfc';
-// $dbUsername = 'root';
-// $dbPassword = '';
+$dbPassword = '';
 
 // MYSQLI Connection Variable
 $conn = mysqli_connect($host, $dbUsername, $dbPassword, $dbName);
