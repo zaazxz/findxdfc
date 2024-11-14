@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($username === 'admin' && $password === 'admin123') {
         $_SESSION['username'] = $username; // Set variabel sesi
         $_SESSION['loggedin'] = true; // Set status login
-        header('Location: admin.php'); // Redirect ke halaman admin
+        header('Location: index.php'); // Redirect ke halaman admin
         exit();
     } else {
         $error = "Invalid username or password.";

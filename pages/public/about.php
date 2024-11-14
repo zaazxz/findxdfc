@@ -21,7 +21,7 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
     <!-- X-frame option -->
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
 
-    <title>Tentang - FINDxDFC</title>
+    <title>Berita - FINDxDFC</title>
     <link rel="stylesheet" href="../../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap" rel="stylesheet">
     
@@ -34,14 +34,15 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
 
         <!-- Header : Start -->
         <header>
-            <h1>FINDxDFC</h1>
+            <h1>FINDxDataTrace</h1>
         </header>
 
         <nav>
             <div class="nav-wrapper">
                 <a href="../../index.php">Beranda</a>
-                <a href="/pages/public/about.php">Tentang</a>
-                <a href="about.php">Administrator?</a>
+                <a href="/pages/public/news.php">Berita</a>
+                <a href="#">Tentang</a>
+                <a href="/pages/admin/index.php">Administrator?</a>
             </div>
         </nav>
         <!-- Header : End -->
@@ -76,13 +77,13 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
     <!-- Container : End -->
 
     <footer>
-      <p style="margin-bottom: 20px; font-size: 18px; font-weight: bold;">&copy; 2024 FINDxDFC. All rights reserved.</p>
-      <p>
+      <p style="font-size: 18px; font-weight: bold;">&copy; 2024 FINDxDFC. All rights reserved.</p>
+      <!-- <p>
         <a href="privacy.html">Kebijakan Privasi</a> |
         <a href="terms.html">Syarat & Ketentuan</a> |
         <a href="contact.html">Kontak</a> |
         <a href="faq.html">FAQ</a>
-      </p>
+      </p> -->
     </footer>
 
     <!-- Loading Screen : Start -->

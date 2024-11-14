@@ -1,13 +1,18 @@
 <?php
 
 // Koneksi ke database
-include_once('../../database/connection.php');
+include_once('../../../../database/connection.php');
 
 // Menangkap ID berita yang ingin dihapus
 $id = $_POST['id'];
 
+// Menghapus Gambar 
+$sql = "SELECT img FROM news WHERE id = '$id'";
+$result = $conn->query($sql);
+$path = "../../uploads/";
+
 // Menghapus berita berdasarkan ID
-$sql = "DELETE FROM reference WHERE id = '$id'";
+$sql = "DELETE FROM news WHERE id = '$id'";
 
 if ($conn->query($sql) === TRUE) {
     echo "Berita berhasil dihapus!";
@@ -19,6 +24,6 @@ if ($conn->query($sql) === TRUE) {
 $conn->close();
 
 // Redirect kembali ke halaman admin
-header("Location: index.php");
+header("Location: ../../index.php");
 exit();
 ?>

@@ -9,6 +9,7 @@ $osint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Osint'");
 $geoint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Geoint'");
 $socmint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Socmint'");
 $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
+$cybint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Cybint'");
 
 ?>
 
@@ -49,7 +50,8 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
                 <button class="toggler-sidebar">☰</button>
             <?php endif ?>
             <div class="nav-wrapper">
-                <a href="index.php">Beranda</a>
+                <a href="#">Beranda</a>
+                <a href="/pages/public/news.php">Berita</a>
                 <a href="/pages/public/about.php">Tentang</a>
                 <a href="/pages/admin/index.php">Administrator?</a>
             </div>
@@ -112,6 +114,19 @@ $humint = mysqli_query($conn, "SELECT * FROM reference WHERE type = 'Humint'");
                         <button id="btn-humint">Alat Humint</button>
                         <div id="humint-list">
                             <?php while ($row = mysqli_fetch_assoc($humint)) : ?>
+                                <div class="tools-list">
+                                    <div value='<?php echo $row['link'] ?>' style="cursor: pointer;" class="tools"><?php echo $row['name'] ?></div>
+                                </div>
+                            <?php endwhile ?>
+                        </div>
+                    </div>
+                    <!-- Humint : End -->
+
+                    <!-- Humint : Start -->
+                    <div id="sidebar-cybint">
+                        <button id="btn-cybint">Alat Cybint</button>
+                        <div id="cybint-list">
+                            <?php while ($row = mysqli_fetch_assoc($cybint)) : ?>
                                 <div class="tools-list">
                                     <div value='<?php echo $row['link'] ?>' style="cursor: pointer;" class="tools"><?php echo $row['name'] ?></div>
                                 </div>

@@ -39,6 +39,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             margin: 0;
         }
 
+        .container {
+            display: flex;
+        }
+
+        .wrapper {
+            width: 50%;
+        }
+
         section {
             margin: 20px auto;
             padding: 20px;
@@ -153,7 +161,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
             padding: 10px 0;
             font-weight: bold;
         }
-
     </style>
 </head>
 
@@ -165,79 +172,147 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
         </form>
     </header>
 
-    <section>
-        <h2>Tambah referensi Baru</h2>
-        <form action="create.php" method="POST">
-            <input type="text" name="name" placeholder="Nama Referensi" required>
-            <select name="type" id="type">
-                <option value="Osint">Osint</option>
-                <option value="Geoint">Geoint</option>
-                <option value="Socint">Socmint</option>
-                <option value="Humint">Humint</option>
-            </select>
-            <input type="text" name="link" placeholder="Tautan Referensi">
-            <button type="submit">Tambah Referensi</button>
-        </form>
-    </section>
+    <div class="container">
+        <div class="wrapper">
+            <section>
+                <a href="reference/create.php">
+                    <button style="width: 100%; font-weight: bold;">Tambah Referensi</button>
+                </a>
+            </section>
 
-    <section>
-        <h2>Daftar Berita</h2>
-        <table>
-            <tr>
-                <th>No</th>
-                <th>Nama Referensi</th>
-                <th>Type</th>
-                <th>Link</th>
-                <th>Website</th>
-                <th>Aksi</th>
-            </tr>
-            <?php
-            
-            // Koneksi ke database
-            include_once('../../database/connection.php');
+            <section>
+                <h2>Daftar referensi</h2>
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Referensi</th>
+                        <th>Type</th>
+                        <th>Link</th>
+                        <th>Website</th>
+                        <th>Aksi</th>
+                    </tr>
+                    <?php
 
-            // Query untuk mengambil berita
-            $sql = "SELECT * FROM reference"; // Sesuaikan dengan tabel dan kolom Anda
-            $result = $conn->query($sql);
+                    // Koneksi ke database
+                    include_once('../../database/connection.php');
 
-            // Menampilkan berita dalam tabel
-            if ($result && $result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['id']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['name']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['type']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['link']) . "</td>";
+                    // Query untuk mengambil berita
+                    $sql = "SELECT * FROM reference"; // Sesuaikan dengan tabel dan kolom Anda
+                    $result = $conn->query($sql);
 
-                    // Cek apakah kunci "link" ada dan tidak kosong
-                    if (!empty($row['link'])) {
-                        echo '<td><a href="' . htmlspecialchars($row['link']) . '" target="_blank">Baca lebih lanjut</a></td>';
+                    // Menampilkan berita dalam tabel
+                    if ($result && $result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($row['id']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['type']) . "</td>";
+                            echo "<td>" . htmlspecialchars($row['link']) . "</td>";
+
+                            // Cek apakah kunci "link" ada dan tidak kosong
+                            if (!empty($row['link'])) {
+                                echo '<td><a href="' . htmlspecialchars($row['link']) . '" target="_blank">Baca lebih lanjut</a></td>';
+                            } else {
+                                echo '<td>Tidak ada link</td>';
+                            }
+
+                            echo '<td class="crud-buttons">';
+                            echo '<form action="/pages/admin/reference/edit.php" method="POST" style="display:inline;">';
+                            echo '<input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">';
+                            echo '<button type="submit">Edit</button>';
+                            echo '</form>';
+
+                            echo '<form action="/pages/admin/reference/functions/delete.php" method="POST" style="display:inline;">';
+                            echo '<input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">';
+                            echo '<button type="submit">Hapus</button>';
+                            echo '</form>';
+                            echo '</td>';
+                            echo "</tr>";
+                        }
                     } else {
-                        echo '<td>Tidak ada link</td>';
+                        echo "<tr><td colspan='6'>Tidak ada berita ditemukan.</td></tr>";
+                    }
+                    ?>
+                </table>
+            </section>
+        </div>
+
+        <div class="wrapper">
+            <section>
+                <a href="news/create.php">
+                    <button style="width: 100%; font-weight: bold;">Tambah Berita</button>
+                </a>
+            </section>
+
+            <section>
+                <h2>Daftar Berita</h2>
+                <table>
+                    <tr>
+                        <th>No</th>
+                        <th>Judul Berita</th>
+                        <th>Kategori</th>
+                        <th>Gambar</th>
+                        <th>Link</th>
+                        <th>Aksi</th>
+                    </tr>
+                    <?php
+
+                    // Koneksi ke database
+                    include_once('../../database/connection.php');
+
+                    // Query untuk mengambil berita
+                    $sql_news = "SELECT * FROM news"; // Sesuaikan dengan tabel dan kolom Anda
+                    $result_news = $conn->query($sql_news);
+
+                    // Menampilkan berita dalam tabel
+                    if ($result_news && $result_news->num_rows > 0) {
+                        while ($rows = $result_news->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . htmlspecialchars($rows['id']) . "</td>";
+                            echo "<td>" . htmlspecialchars($rows['title']) . "</td>";
+                            echo "<td>" . htmlspecialchars($rows['category']) . "</td>";
+                            if(!empty($rows['img'])) {
+                                echo '<td>Gambar ada</td>';
+                            } else {
+                                echo '<td>Tidak ada gambar</td>';
+                            }
+
+                            // Cek apakah kunci "link" ada dan tidak kosong
+                            if (!empty($rows['link'])) {
+                                echo '<td><a href="' . htmlspecialchars($rows['link']) . '" target="_blank">Baca lebih lanjut</a></td>';
+                            } else {
+                                echo '<td>Tidak ada link</td>';
+                            }
+
+                            echo '<td class="crud-buttons">';
+                            echo '<form action="/pages/admin/news/edit.php" method="POST" style="display:inline;">';
+                            echo '<input type="hidden" name="id" value="' . htmlspecialchars($rows['id']) . '">';
+                            echo '<button type="submit">Edit</button>';
+                            echo '</form>';
+
+                            echo '<form action="/pages/admin/news/functions/delete.php" method="POST" style="display:inline;">';
+                            echo '<input type="hidden" name="id" value="' . htmlspecialchars($rows['id']) . '">';
+                            echo '<button type="submit">Hapus</button>';
+                            echo '</form>';
+                            echo '</td>';
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td colspan='6'>Tidak ada berita ditemukan.</td></tr>";
                     }
 
-                    echo '<td class="crud-buttons">';
-                    echo '<form action="edit.php" method="POST" style="display:inline;">';
-                    echo '<input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">';
-                    echo '<button type="submit">Edit</button>';
-                    echo '</form>';
+                    // Menutup koneksi
+                    $conn->close();
+                    ?>
+                </table>
+            </section>
+        </div>
+    </div>
 
-                    echo '<form action="delete.php" method="POST" style="display:inline;">';
-                    echo '<input type="hidden" name="id" value="' . htmlspecialchars($row['id']) . '">';
-                    echo '<button type="submit">Hapus</button>';
-                    echo '</form>';
-                    echo '</td>';
-                    echo "</tr>";
-                }
-            } else {
-                echo "<tr><td colspan='6'>Tidak ada berita ditemukan.</td></tr>";
-            }
 
-            // Menutup koneksi
-            $conn->close();
-            ?>
-        </table>
-    </section>
+
+
+
 </body>
 
 </html>
